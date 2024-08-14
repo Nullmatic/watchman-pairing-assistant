@@ -139,8 +139,8 @@ class App(ctk.CTk):
         self.title("watchman_pairing_assistant")
         self.after(201, lambda :self.iconbitmap(r'resources\icon.ico')) #set icon dir
         self.geometry(f"{940}x{580}")
-        config = self.load_config()
-        ctk.set_appearance_mode(config.get("theme"))
+        #config = self.load_config()
+        #ctk.set_appearance_mode(config.get("theme"))
         
         self.grid_rowconfigure(1, weight=1)
         self.grid_columnconfigure(1, weight=1)
@@ -228,31 +228,31 @@ class App(ctk.CTk):
             return "Dongle" 
 
     def get_exe_path(self):#Get exe path
-        config = self.load_config()
-        exe_path = config.get("lighthouse_console_path")
+        #config = self.load_config()
+        exe_path = os.path.join(os.path.expanduser('~'), ".steam/steam/steamapps/common/SteamVR/tools/lighthouse/bin/linux64/lighthouse_console")
         return exe_path
 
-    def load_config(self):  # Generating and getting json
-        config_path = os.path.join(os.path.dirname(sys.argv[0]), "resources", "config.json")
-        resources_dir = os.path.join(os.path.dirname(sys.argv[0]), "resources")
-
-        default_config = {
-            "theme": "Dark",
-            "lighthouse_console_path": r"C:\Program Files (x86)\Steam\steamapps\common\SteamVR\tools\lighthouse\bin\win64\lighthouse_console.exe"
-        }
-
-        if not os.path.exists(resources_dir):
-            os.makedirs(resources_dir, exist_ok=True)
-
-        if not os.path.exists(config_path):
-            with open(config_path, "w") as config_file:
-                json.dump(default_config, config_file)
-
-        if os.path.exists(config_path):
-            with open(config_path, "r") as config_file:
-                config = json.load(config_file)
-
-        return config
+#    def load_config(self):  # Generating and getting json
+#        config_path = os.path.join(os.path.dirname(sys.argv[0]), "resources", "config.json")
+#        resources_dir = os.path.join(os.path.dirname(sys.argv[0]), "resources")
+#
+#        default_config = {
+#            "theme": "Dark",
+#            "lighthouse_console_path": r"C:\Program Files (x86)\Steam\steamapps\common\SteamVR\tools\lighthouse\bin\win64\lighthouse_console.exe"
+#        }
+#
+#        if not os.path.exists(resources_dir):
+#            os.makedirs(resources_dir, exist_ok=True)
+#
+#        if not os.path.exists(config_path):
+#            with open(config_path, "w") as config_file:
+#                json.dump(default_config, config_file)
+#
+#        if os.path.exists(config_path):
+#            with open(config_path, "r") as config_file:
+#                config = json.load(config_file)
+#
+#        return config
 
 if __name__ == "__main__":
     app = App() 

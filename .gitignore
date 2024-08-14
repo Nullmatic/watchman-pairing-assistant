@@ -1,0 +1,8 @@
+# Poetry stuffz
+dist/
+poetry.lock
+pyproject.toml
+
+# cx-freeze
+build/
+setup.py
